@@ -181,3 +181,18 @@ body {
 .minus:hover {
   background-color: #00a7d0;
 }
+
+@media screen and (max-width: 768px) {
+  .order-cookies {
+    flex-direction: column;
+  }
+  .cookies-column {
+    padding: 80px 0px;
+    max-width: 100% !important;
+    border-bottom: 1px solid #ececec !important;
+  }
+  .cookie-gathering-column {
+    padding: 80px 0px;
+    max-width: 100% !important;
+  }
+}

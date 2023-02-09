@@ -41,7 +41,7 @@ export default function App() {
   };
 
   return (
-    <div className='flex'>
+    <div className='flex order-cookies'>
       <div className='grow-2 cookies-column'>
         <div className='cookies-header'>
           <p className='light-font'>Select 6 Cookies of your Choice</p>
