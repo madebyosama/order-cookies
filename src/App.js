@@ -27,6 +27,19 @@ export default function App() {
     return selectedCookies.filter((d) => d.title === c.title).length;
   };
 
+  const handleRemove = (c) => {
+    const index = selectedCookies.findIndex((x) => x.title === c.title);
+    if (
+      index > -1 &&
+      selectedCookies.indexOf(selectedCookies[index]) === index
+    ) {
+      setSelectedCookies([
+        ...selectedCookies.slice(0, index),
+        ...selectedCookies.slice(index + 1),
+      ]);
+    }
+  };
+
   return (
     <div className='flex'>
       <div className='grow-2 cookies-column'>
@@ -75,19 +88,34 @@ cookie-gathering-column'
         <div className='cart-cookies'>
           {cartCookies.map((c) => {
             return (
-              <div
-                className='cart-cookie'
-                onClick={() => {
-                  if (selectedNumber < numberOfCookies) {
-                    setSelectedCookies([...selectedCookies, c]);
-                    setSelectedNumber(selectedNumber + 1);
-                  }
-                  checkCount(c);
-                }}
-              >
-                <div className='cookie-counter'>{checkCount(c)}</div>
+              <div className='cart-cookie'>
                 <img src={c.image} width='130px' />
                 <p className='cookie-title'>{c.title}</p>
+                <div className='counter'>
+                  <div
+                    className='plus'
+                    onClick={() => {
+                      if (selectedNumber < numberOfCookies) {
+                        setSelectedCookies([...selectedCookies, c]);
+                        setSelectedNumber(selectedNumber + 1);
+                      }
+                      checkCount(c);
+                    }}
+                  >
+                    +
+                  </div>
+                  {checkCount(c)}
+                  <div
+                    className='minus'
+                    onClick={() => {
+                      handleRemove(c);
+                      setSelectedNumber(selectedNumber - 1);
+                      checkCount(c);
+                    }}
+                  >
+                    -
+                  </div>
+                </div>
               </div>
             );
           })}

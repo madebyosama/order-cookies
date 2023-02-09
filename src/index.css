@@ -18,6 +18,7 @@ body {
   align-items: center;
   max-width: 700px;
   padding: 40px 0px 0px 0px;
+  height: 100vh;
 }
 
 .cookie-gathering-column {
@@ -106,6 +107,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-bottom: 64px;
+  margin-right: 16px;
 }
 
 .cookie-counter {
@@ -150,4 +152,32 @@ body {
   cursor: pointer;
   font-weight: 600;
   padding: 12px 24px;
+}
+
+.counter {
+  display: flex;
+}
+
+.plus {
+  padding: 0px 8px;
+  margin-right: 8px;
+  background-color: #ffde59;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.plus:hover {
+  background-color: #00a7d0;
+}
+
+.minus {
+  padding: 0px 8px 2px 8px;
+  margin-left: 8px;
+  background-color: #ffde59;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.minus:hover {
+  background-color: #00a7d0;
 }
