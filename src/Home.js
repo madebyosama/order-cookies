@@ -1,12 +1,16 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Checkout from './Checkout';
+import ThankYou from './ThankYou';
 
-export default function App() {
+export default function Home() {
   const [cookies, setCookies] = useState([]);
   const [selectedCookies, setSelectedCookies] = useState([]);
   const [selectedNumber, setSelectedNumber] = useState(0);
   const [numberOfCookies, setNumberOfCookies] = useState(6);
   const [cartCookies, setCartCookies] = useState([]);
+  const [checkoutReady, setCheckoutReady] = useState(false);
+  const [checkoutDone, setCheckoutDone] = useState(false);
 
   useEffect(() => {
     async function fetch() {
@@ -20,7 +24,6 @@ export default function App() {
 
   useEffect(() => {
     setCartCookies([...new Set(selectedCookies.map((x) => x))]);
-    console.log(cartCookies);
   }, [selectedCookies]);
 
   const checkCount = (c) => {
@@ -40,6 +43,21 @@ export default function App() {
     }
   };
 
+  if (checkoutDone) {
+    return <ThankYou />;
+  }
+
+  if (checkoutReady) {
+    return (
+      <Checkout
+        cookies={selectedCookies}
+        onUpdateCheckoutReady={() => {
+          setCheckoutReady(false);
+        }}
+      />
+    );
+  }
+
   return (
     <div className='flex order-cookies'>
       <div className='grow-2 cookies-column'>
@@ -55,6 +73,7 @@ export default function App() {
           {cookies.map((c) => {
             return (
               <div
+                key={c.title}
                 className='cookie'
                 onClick={() => {
                   if (selectedNumber < numberOfCookies) {
@@ -89,6 +108,11 @@ cookie-gathering-column'
             <p className='light-font'>Select 6 cookies to enable checkout</p>
           )}
           <button
+            onClick={() => {
+              selectedNumber === 6
+                ? setCheckoutReady(true)
+                : setCheckoutReady(false);
+            }}
             className={
               selectedNumber === 6
                 ? 'add-to-cart-btn'
