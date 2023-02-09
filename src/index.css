@@ -143,6 +143,19 @@ body {
   padding: 12px 24px;
 }
 
+.disabled {
+  cursor: not-allowed !important;
+  color: #777;
+  border: 2px solid #ccc;
+  background-color: #ccc;
+}
+
+.disabled:hover {
+  border: 2px solid #ccc !important;
+  background-color: #ccc !important;
+  color: #777 !important;
+}
+
 .add-to-cart-btn:hover {
   border: 2px solid #00a7d0;
   color: #fff;

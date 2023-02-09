@@ -83,7 +83,20 @@ cookie-gathering-column'
         <div className='cookies-header'>
           <h3 className='text-center title box-title'>Your Box</h3>
           <p className=''>{selectedNumber + '/' + numberOfCookies}</p>
-          <button className='add-to-cart-btn'>Add to Cart</button>
+          {selectedNumber === 6 ? (
+            <p className='light-font'>You can checkout now</p>
+          ) : (
+            <p className='light-font'>Select 6 cookies to enable checkout</p>
+          )}
+          <button
+            className={
+              selectedNumber === 6
+                ? 'add-to-cart-btn'
+                : 'add-to-cart-btn disabled'
+            }
+          >
+            Checkout
+          </button>
         </div>
         <div className='cart-cookies'>
           {cartCookies.map((c) => {
