@@ -15,9 +15,8 @@ body {
   border-right: 1px solid #ececec;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  max-width: 850px;
+  max-width: 700px;
   padding: 40px 0px 0px 0px;
 }
 
@@ -25,8 +24,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   padding: 40px 0px 0px 0px;
+  max-width: 500px;
 }
 
 .text-center {
@@ -71,21 +70,51 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  padding-right: 80px;
-  padding-left: 64px;
+  justify-content: center;
+  padding: 0px 10px;
+  margin-right: 20px;
 }
 
 .cookie {
+  position: relative;
   cursor: pointer;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 64px;
   margin-left: 16px;
+}
+
+.cart-cookies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 20px;
+}
+
+.cart-cookie {
+  position: relative;
+  cursor: pointer;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.cookie-counter {
+  position: absolute;
+  font-weight: bold;
+  background-color: #ffde59;
+  padding: 8px 24px;
+  top: -20px;
+  right: 0px;
 }
 
 .cookie-title {
