@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function Checkout(props) {
+  const form = useRef();
   const { cookies } = props;
   const [cartCookies, setCartCookies] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState();
   const updateCheckoutReady = () => {
     props.onUpdateCheckoutReady();
   };
@@ -16,6 +20,27 @@ export default function Checkout(props) {
     return cookies.filter((d) => d.title === c.title).length;
   };
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    emailjs
+      .sendForm('checkout', 'checkout', form.current, 'oODAFM08o-ckYKNX_')
+      .then(
+        (result) => {
+          if (result.text === 'OK') {
+            setIsSubmitted('yes');
+            setIsSubmitting(false);
+          } else {
+            setIsSubmitted('no');
+            setIsSubmitting(false);
+          }
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
   return (
     <div className='checkout'>
       <button className='back-btn' onClick={updateCheckoutReady}>
@@ -23,7 +48,7 @@ export default function Checkout(props) {
       </button>
       <div className='checkout-page'>
         <div className='checkout-form'>
-          <form className='form'>
+          <form className='form' ref={form}>
             <label>General Information</label>
             <input placeholder='Name' required />
             <input placeholder='Email' required />
