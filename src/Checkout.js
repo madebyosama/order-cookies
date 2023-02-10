@@ -23,6 +23,7 @@ export default function Checkout(props) {
   const [state, setState] = useState();
   const [zipcode, setZipcode] = useState();
   const [notes, setNotes] = useState('');
+  const [validEmail, setValidEmail] = useState('Not Entered');
 
   const updateCheckoutReady = () => {
     props.onUpdateCheckoutReady();
@@ -35,6 +36,24 @@ export default function Checkout(props) {
 
   const checkCount = (c) => {
     return cookies.filter((d) => d.title === c.title).length;
+  };
+
+  let handleEmail = (email) => {
+    // don't remember from where i copied this code, but this works.
+    let re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (re.test(email)) {
+      console.log(validEmail);
+      // this is a valid email address
+      // call setState({email: email}) to update the email
+      // or update the data in redux store.
+      setAllFilled(true);
+    } else {
+      console.log(validEmail);
+      setValidEmail('False Email');
+      // invalid email, maybe show an error to the user.
+    }
   };
 
   return (
@@ -77,6 +96,7 @@ export default function Checkout(props) {
                   setName(e.target.value);
                 }}
               />
+
               <input
                 placeholder='Email'
                 type='email'
@@ -86,6 +106,7 @@ export default function Checkout(props) {
                   setEmail(e.target.value);
                 }}
               />
+
               <input
                 placeholder='Phone'
                 type='number'
@@ -145,6 +166,12 @@ export default function Checkout(props) {
                   setNotes(e.target.value);
                 }}
               />
+              {validEmail === 'Correct Email' ||
+              validEmail === 'Not Entered' ? (
+                ''
+              ) : (
+                <p style={{ color: 'Red' }}>Email is not valid.</p>
+              )}
               <input
                 type='submit'
                 className='submit-btn'
@@ -153,7 +180,7 @@ export default function Checkout(props) {
                   if (
                     (name, email, phone, addressLineOne, city, state, zipcode)
                   ) {
-                    setAllFilled(true);
+                    handleEmail(email);
                   }
                 }}
               />
