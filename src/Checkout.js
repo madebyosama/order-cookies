@@ -44,7 +44,7 @@ export default function Checkout(props) {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (re.test(email)) {
-      console.log(validEmail);
+      setValidEmail('Correct Email');
       // this is a valid email address
       // call setState({email: email}) to update the email
       // or update the data in redux store.
@@ -58,13 +58,15 @@ export default function Checkout(props) {
 
   return (
     <div className='checkout'>
-      <button className='back-btn' onClick={updateCheckoutReady}>
-        Back
-      </button>
       <div className='checkout-page'>
         <div className='checkout-form'>
           {allFilled ? (
             <div>
+              <button className='back-btn' onClick={() => setAllFilled(false)}>
+                Back
+              </button>
+              <br />
+              <br />
               <label>Payment</label>
               <div className='space-top-24'></div>
               <Elements stripe={stripeTestPromise}>
@@ -82,109 +84,126 @@ export default function Checkout(props) {
               </Elements>
             </div>
           ) : (
-            <form
-              className='form'
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <label>General Information</label>
-              <input
-                placeholder='Name'
-                required
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
+            <div>
+              <button className='back-btn' onClick={updateCheckoutReady}>
+                Back
+              </button>
+              <br />
+              <br />
 
-              <input
-                placeholder='Email'
-                type='email'
-                value={email}
-                required
-                onChange={(e) => {
-                  setEmail(e.target.value);
+              <div className='span-top-24'></div>
+              <form
+                className='form'
+                onSubmit={(e) => {
+                  e.preventDefault();
                 }}
-              />
-
-              <input
-                placeholder='Phone'
-                type='number'
-                required
-                onChange={(e) => {
-                  setPhone(e.target.value);
-                }}
-              />
-              <span className='space-top-24'></span>
-              <label>Shipping Information</label>
-              {/* <h3>Address</h3> */}
-              <input
-                placeholder='Address Line 1'
-                required
-                onChange={(e) => {
-                  setAddressLineOne(e.target.value);
-                }}
-              />
-              <input
-                placeholder='Address Line 2'
-                onChange={(e) => {
-                  setAddressLineTwo(e.target.value);
-                }}
-              />
-              <div className='flex'>
+              >
+                <label>General Information</label>
                 <input
-                  placeholder='City'
-                  className='half-input'
-                  style={{ marginRight: '8px' }}
+                  placeholder='Name'
+                  value={name}
                   required
                   onChange={(e) => {
-                    setCity(e.target.value);
+                    setName(e.target.value);
+                  }}
+                />
+
+                <input
+                  placeholder='Email'
+                  type='email'
+                  value={email}
+                  required
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+
+                <input
+                  placeholder='Phone'
+                  value={phone}
+                  type='number'
+                  required
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
+                />
+                <span className='space-top-24'></span>
+                <label>Shipping Information</label>
+                {/* <h3>Address</h3> */}
+                <input
+                  placeholder='Address Line 1'
+                  value={addressLineOne}
+                  required
+                  onChange={(e) => {
+                    setAddressLineOne(e.target.value);
                   }}
                 />
                 <input
-                  placeholder='State'
-                  className='half-input'
-                  required
+                  placeholder='Address Line 2'
+                  value={addressLineTwo}
                   onChange={(e) => {
-                    setState(e.target.value);
+                    setAddressLineTwo(e.target.value);
                   }}
                 />
-              </div>
-              <input
-                placeholder='Zipcode'
-                type='number'
-                required
-                onChange={(e) => {
-                  setZipcode(e.target.value);
-                }}
-              />
-              <span className='space-top-24'></span>
-              <label>Other</label>
-              <textarea
-                placeholder='Notes'
-                onChange={(e) => {
-                  setNotes(e.target.value);
-                }}
-              />
-              {validEmail === 'Correct Email' ||
-              validEmail === 'Not Entered' ? (
-                ''
-              ) : (
-                <p style={{ color: 'Red' }}>Email is not valid.</p>
-              )}
-              <input
-                type='submit'
-                className='submit-btn'
-                value='Pay Now'
-                onClick={(e) => {
-                  if (
-                    (name, email, phone, addressLineOne, city, state, zipcode)
-                  ) {
-                    handleEmail(email);
-                  }
-                }}
-              />
-            </form>
+                <div className='flex'>
+                  <input
+                    placeholder='City'
+                    value={city}
+                    className='half-input'
+                    style={{ marginRight: '8px' }}
+                    required
+                    onChange={(e) => {
+                      setCity(e.target.value);
+                    }}
+                  />
+                  <input
+                    placeholder='State'
+                    value={state}
+                    className='half-input'
+                    required
+                    onChange={(e) => {
+                      setState(e.target.value);
+                    }}
+                  />
+                </div>
+                <input
+                  placeholder='Zipcode'
+                  value={zipcode}
+                  type='number'
+                  required
+                  onChange={(e) => {
+                    setZipcode(e.target.value);
+                  }}
+                />
+                <span className='space-top-24'></span>
+                <label>Other</label>
+                <textarea
+                  placeholder='Notes'
+                  value={notes}
+                  onChange={(e) => {
+                    setNotes(e.target.value);
+                  }}
+                />
+                {validEmail === 'Correct Email' ||
+                validEmail === 'Not Entered' ? (
+                  ''
+                ) : (
+                  <p style={{ color: 'Red' }}>Email is not valid.</p>
+                )}
+                <input
+                  type='submit'
+                  className='submit-btn'
+                  value='Pay Now'
+                  onClick={(e) => {
+                    if (
+                      (name, email, phone, addressLineOne, city, state, zipcode)
+                    ) {
+                      handleEmail(email);
+                    }
+                  }}
+                />
+              </form>
+            </div>
           )}
         </div>
         <div className='detail-section'>

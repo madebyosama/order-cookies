@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
-  max-width: 1200px;
-  margin: auto;
   box-sizing: border-box;
   font-family: 'Outfit';
   color: #333;
@@ -10,6 +8,10 @@ body {
 
 .flex {
   display: flex;
+}
+.order-cookies {
+  max-width: 1200px;
+  margin: auto;
 }
 
 .cookies-column {
@@ -19,7 +21,6 @@ body {
   align-items: center;
   max-width: 700px;
   padding: 40px 0px 0px 0px;
-  height: 100vh;
 }
 
 .cookie-gathering-column {
@@ -239,6 +240,8 @@ body {
 }
 
 .checkout {
+  max-width: 1200px;
+  margin: auto;
   padding: 40px 0px;
 }
 
@@ -335,6 +338,55 @@ h3 {
   max-width: 600px;
 }
 
+@media screen and (max-width: 768px) {
+  .checkout-page {
+    flex-direction: column !important;
+    overflow-x: hidden;
+    width: auto !important;
+  }
+  .checkout-form {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 32px !important;
+    width: auto !important;
+  }
+  .form {
+    width: auto !important;
+  }
+  .detail-section {
+    margin: 32px !important;
+  }
+  textarea,
+  input {
+    width: auto !important;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .half-input {
+    width: 50% !important;
+  }
+  .details-cookies {
+    padding: 30px !important;
+  }
+  .submit-btn {
+    width: 100% !important;
+    -webkit-appearance: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .StripeElement {
+    width: auto !important;
+  }
+  .checkout-form {
+    min-width: 0px !important;
+  }
+}
+
 .details-cookies {
   border: 2px solid #333;
   padding: 40px 64px;
@@ -389,4 +441,14 @@ h3 {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+.thankyou {
+  text-align: center;
+  margin-top: 64px;
+  flex-direction: column;
+}
+
+.back {
+  margin-top: 64px;
 }
