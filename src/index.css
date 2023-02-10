@@ -5,6 +5,7 @@ body {
   margin: auto;
   box-sizing: border-box;
   font-family: 'Outfit';
+  color: #333;
 }
 
 .flex {
@@ -36,6 +37,7 @@ body {
 .title {
   text-transform: uppercase;
   font-size: 24px;
+  font-weight: 700;
 }
 
 .select-cookies {
@@ -238,4 +240,121 @@ body {
 
 .checkout {
   padding: 40px 0px;
+}
+
+.checkout-form {
+  padding-top: 40px;
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  /* align-items: center; */
+  min-width: 500px;
+}
+
+.checkout-page {
+  display: flex;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea {
+  border: 2px solid #333333;
+  outline: none;
+  font-family: 'Outfit', Sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  width: 350px;
+}
+
+label {
+  text-align: left;
+  margin-bottom: 16px;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.submit-btn {
+  color: #fff;
+  background-color: #333;
+  font-family: 'Outfit';
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 12px 24px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: none;
+  width: 387px;
+}
+.submit-btn:hover {
+  color: #333;
+  background-color: #ffde59;
+  font-family: 'Outfit';
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 12px 24px;
+  text-decoration: none;
+}
+
+.space-top-24 {
+  padding-top: 24px;
+}
+
+h3 {
+  font-weight: 400;
+}
+
+.half-input {
+  max-width: 153px;
+}
+
+.detail-section {
+  margin: 40px 80px;
+  max-width: 600px;
+}
+
+.details-cookies {
+  border: 2px solid #333;
+  padding: 40px 64px;
+  justify-content: left;
+  margin-right: 0px;
+}
+
+.detail-cookie {
+  display: flex;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+.detail-cookie-title {
+  font-size: 20px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-title {
+  background-color: #ffde59;
+  padding: 12px 24px;
+  margin: 0;
 }

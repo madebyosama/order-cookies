@@ -21,22 +21,62 @@ export default function Checkout(props) {
       <button className='back-btn' onClick={updateCheckoutReady}>
         Back
       </button>
-      <div className='cookies'>
-        {cartCookies.map((c) => {
-          return (
-            <div key={c.title} className='cookie'>
-              {checkCount(c) ? (
-                <div className='cookie-counter'>{checkCount(c)}</div>
-              ) : (
-                <div></div>
-              )}
-              <img src={c.image} width='130px' />
-              <p className='cookie-title'>{c.title}</p>
+      <div className='checkout-page'>
+        <div className='checkout-form'>
+          <form className='form'>
+            <label>General Information</label>
+            <input placeholder='Name' required />
+            <input placeholder='Email' required />
+            <input placeholder='Phone' required />
+            <span className='space-top-24'></span>
+            <label>Shipping Information</label>
+            {/* <h3>Address</h3> */}
+            <input placeholder='Address Line 1' required />
+            <input placeholder='Address Line 2' />
+            <div className='flex'>
+              <input
+                placeholder='City'
+                className='half-input'
+                style={{ marginRight: '8px' }}
+                required
+              />
+              <input placeholder='State' className='half-input' required />
             </div>
-          );
-        })}
+            <input placeholder='Zipcode' required />
+            <span className='space-top-24'></span>
+            <label>Other</label>
+            <textarea placeholder='Notes' />
+            <span className='space-top-24'></span>
+            <label>Payment Method</label>
+            <textarea placeholder='Notes' />
+
+            <input type='submit' className='submit-btn' value='Place Order' />
+          </form>
+        </div>
+        <div className='detail-section'>
+          <h3 className='text-center title detail-title '>Your Box</h3>
+          <div className='cookies details-cookies'>
+            {cartCookies.map((c) => {
+              return (
+                <div key={c.title} className='detail-cookie'>
+                  <div>
+                    <img src={c.image} width='100px' />
+                  </div>
+                  <div>
+                    <p className='detail-cookie-title'>{c.title}</p>
+                  </div>
+                  <div>
+                    <p className='detail-cookie-title'>X</p>
+                  </div>
+                  <div>
+                    <div className='detail-cookie-title'>{checkCount(c)}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
-      <div className='form'></div>
     </div>
   );
 }
