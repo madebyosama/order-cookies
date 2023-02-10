@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import Stripe from './Components/StripeContainer';
 
 export default function Checkout(props) {
   const form = useRef();
@@ -48,7 +49,13 @@ export default function Checkout(props) {
       </button>
       <div className='checkout-page'>
         <div className='checkout-form'>
-          <form className='form' ref={form}>
+          <form
+            className='form'
+            ref={form}
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <label>General Information</label>
             <input placeholder='Name' required />
             <input placeholder='Email' required />
@@ -72,11 +79,9 @@ export default function Checkout(props) {
             <label>Other</label>
             <textarea placeholder='Notes' />
             <span className='space-top-24'></span>
-            <label>Payment Method</label>
-            <textarea placeholder='Notes' />
-
-            <input type='submit' className='submit-btn' value='Place Order' />
           </form>
+          <label>Payment</label>
+          <Stripe />
         </div>
         <div className='detail-section'>
           <h3 className='text-center title detail-title '>Your Box</h3>

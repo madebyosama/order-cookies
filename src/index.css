@@ -261,7 +261,8 @@ body {
 }
 
 input,
-textarea {
+textarea,
+.submit-btn {
   border: 2px solid #333333;
   outline: none;
   font-family: 'Outfit', Sans-serif;
@@ -297,6 +298,18 @@ label {
 .submit-btn:hover {
   color: #333;
   background-color: #ffde59;
+  font-family: 'Outfit';
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 12px 24px;
+  text-decoration: none;
+}
+
+.disable-btn {
+  cursor: not-allowed !important;
+  color: #333;
+  background-color: #ccc !important;
   font-family: 'Outfit';
   text-transform: uppercase;
   cursor: pointer;
@@ -357,4 +370,23 @@ h3 {
   background-color: #ffde59;
   padding: 12px 24px;
   margin: 0;
+}
+
+.StripeElement {
+  border: 2px solid #333333;
+  outline: none;
+  font-family: 'Outfit', Sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  width: 350px;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
 }
