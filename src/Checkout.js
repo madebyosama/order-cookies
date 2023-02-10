@@ -1,13 +1,29 @@
-import { useEffect, useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
-import Stripe from './Components/StripeContainer';
+import { useEffect, useState } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { CheckoutForm } from './Components/CheckoutForm';
+
+const PUBLIC_KEY =
+  'pk_test_51JYW5fAUJtCKmWZEr8em2ohJlgByEVLBApJyH9oGzQzNFCnLbQUOfiyJ6dmzzfhawb35GA9oJpTWxpqcwfoT2jb900WiNeFrEL';
+
+const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 export default function Checkout(props) {
-  const form = useRef();
   const { cookies } = props;
   const [cartCookies, setCartCookies] = useState([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState();
+
+  const [allFilled, setAllFilled] = useState(false);
+
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+  const [addressLineOne, setAddressLineOne] = useState();
+  const [addressLineTwo, setAddressLineTwo] = useState('');
+  const [city, setCity] = useState();
+  const [state, setState] = useState();
+  const [zipcode, setZipcode] = useState();
+  const [notes, setNotes] = useState('');
+
   const updateCheckoutReady = () => {
     props.onUpdateCheckoutReady();
   };
@@ -21,27 +37,6 @@ export default function Checkout(props) {
     return cookies.filter((d) => d.title === c.title).length;
   };
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    emailjs
-      .sendForm('checkout', 'checkout', form.current, 'oODAFM08o-ckYKNX_')
-      .then(
-        (result) => {
-          if (result.text === 'OK') {
-            setIsSubmitted('yes');
-            setIsSubmitting(false);
-          } else {
-            setIsSubmitted('no');
-            setIsSubmitting(false);
-          }
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
-
   return (
     <div className='checkout'>
       <button className='back-btn' onClick={updateCheckoutReady}>
@@ -49,39 +44,121 @@ export default function Checkout(props) {
       </button>
       <div className='checkout-page'>
         <div className='checkout-form'>
-          <form
-            className='form'
-            ref={form}
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <label>General Information</label>
-            <input placeholder='Name' required />
-            <input placeholder='Email' required />
-            <input placeholder='Phone' required />
-            <span className='space-top-24'></span>
-            <label>Shipping Information</label>
-            {/* <h3>Address</h3> */}
-            <input placeholder='Address Line 1' required />
-            <input placeholder='Address Line 2' />
-            <div className='flex'>
-              <input
-                placeholder='City'
-                className='half-input'
-                style={{ marginRight: '8px' }}
-                required
-              />
-              <input placeholder='State' className='half-input' required />
+          {allFilled ? (
+            <div>
+              <label>Payment</label>
+              <div className='space-top-24'></div>
+              <Elements stripe={stripeTestPromise}>
+                <CheckoutForm
+                  name={name}
+                  email={email}
+                  phone={phone}
+                  addressLineOne={addressLineOne}
+                  addressLineTwo={addressLineTwo}
+                  city={city}
+                  state={state}
+                  zipcode={zipcode}
+                  note={notes}
+                />
+              </Elements>
             </div>
-            <input placeholder='Zipcode' required />
-            <span className='space-top-24'></span>
-            <label>Other</label>
-            <textarea placeholder='Notes' />
-            <span className='space-top-24'></span>
-          </form>
-          <label>Payment</label>
-          <Stripe />
+          ) : (
+            <form
+              className='form'
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
+              <label>General Information</label>
+              <input
+                placeholder='Name'
+                required
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+              <input
+                placeholder='Email'
+                type='email'
+                value={email}
+                required
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <input
+                placeholder='Phone'
+                type='number'
+                required
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                }}
+              />
+              <span className='space-top-24'></span>
+              <label>Shipping Information</label>
+              {/* <h3>Address</h3> */}
+              <input
+                placeholder='Address Line 1'
+                required
+                onChange={(e) => {
+                  setAddressLineOne(e.target.value);
+                }}
+              />
+              <input
+                placeholder='Address Line 2'
+                onChange={(e) => {
+                  setAddressLineTwo(e.target.value);
+                }}
+              />
+              <div className='flex'>
+                <input
+                  placeholder='City'
+                  className='half-input'
+                  style={{ marginRight: '8px' }}
+                  required
+                  onChange={(e) => {
+                    setCity(e.target.value);
+                  }}
+                />
+                <input
+                  placeholder='State'
+                  className='half-input'
+                  required
+                  onChange={(e) => {
+                    setState(e.target.value);
+                  }}
+                />
+              </div>
+              <input
+                placeholder='Zipcode'
+                type='number'
+                required
+                onChange={(e) => {
+                  setZipcode(e.target.value);
+                }}
+              />
+              <span className='space-top-24'></span>
+              <label>Other</label>
+              <textarea
+                placeholder='Notes'
+                onChange={(e) => {
+                  setNotes(e.target.value);
+                }}
+              />
+              <input
+                type='submit'
+                className='submit-btn'
+                value='Pay Now'
+                onClick={(e) => {
+                  if (
+                    (name, email, phone, addressLineOne, city, state, zipcode)
+                  ) {
+                    setAllFilled(true);
+                  }
+                }}
+              />
+            </form>
+          )}
         </div>
         <div className='detail-section'>
           <h3 className='text-center title detail-title '>Your Box</h3>

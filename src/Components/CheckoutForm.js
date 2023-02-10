@@ -1,14 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import emailjs from '@emailjs/browser';
 
-export const CheckoutForm = () => {
+export const CheckoutForm = (props) => {
   const navigate = useNavigate();
   const stripe = useStripe();
+  const form = useRef();
+
   const elements = useElements();
   const [buttonTitle, setButtonTitle] = useState('Place Order');
   const [buttonClass, setButtonClass] = useState('submit-btn');
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState();
+
+  const sendEmail = () => {
+    setButtonTitle('Successful');
+    setIsSubmitting(true);
+    emailjs
+      .sendForm('checkout', 'checkout', form.current, 'oODAFM08o-ckYKNX_')
+      .then(
+        (result) => {
+          if (result.text === 'OK') {
+            setIsSubmitted('yes');
+            setIsSubmitting(false);
+            navigate('/thankyou');
+          } else {
+            alert(
+              'Payment Send but Details not sent. Please contact us for more information.'
+            );
+            setIsSubmitted('no');
+            setIsSubmitting(false);
+          }
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setButtonTitle('Proccessing...');
@@ -16,6 +48,18 @@ export const CheckoutForm = () => {
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement),
+      billing_details: {
+        address: {
+          city: props.city,
+          line1: props.addressLineOne,
+          line2: props.addressLineTwo,
+          postal_code: props.zipcode,
+          state: props.state,
+        },
+        email: props.email,
+        name: props.name,
+        phone: props.phone,
+      },
     });
 
     if (!error) {
@@ -32,7 +76,7 @@ export const CheckoutForm = () => {
 
         console.log('Stripe 35 | data', response.data.success);
         if (response.data.success) {
-          navigate('/thankyou');
+          sendEmail();
           setButtonTitle('Proccessing');
           console.log('CheckoutForm.js 25 | payment successful!');
         }
@@ -49,13 +93,69 @@ export const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-      <CardElement />
-      {buttonTitle === 'Place Order' ? (
-        <button className={buttonClass}>{buttonTitle}</button>
-      ) : (
-        <p className='disable-btn'>Proccessing...</p>
-      )}
-    </form>
+    <div>
+      <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
+        <CardElement />
+        {buttonTitle === 'Place Order' ? (
+          <button className={buttonClass}>{buttonTitle}</button>
+        ) : (
+          <p className='disable-btn'>Proccessing...</p>
+        )}
+      </form>
+      <form
+        style={{ display: 'none' }}
+        ref={form}
+        className='form'
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <label>General Information</label>
+        <input placeholder='Name' name='name' required value={props.name} />
+        <input placeholder='Email' name='email' required value={props.email} />
+        <input placeholder='Phone' name='phone' required value={props.phone} />
+        <span className='space-top-24'></span>
+        <label>Shipping Information</label>
+        {/* <h3>Address</h3> */}
+        <input
+          placeholder='Address Line 1'
+          name='addressLineOne'
+          required
+          value={props.addressLineOne}
+        />
+        <input
+          placeholder='Address Line 2'
+          name='addressLineTwo'
+          value={props.addressLineTwo}
+        />
+        <div className='flex'>
+          <input
+            placeholder='City'
+            name='city'
+            className='half-input'
+            style={{ marginRight: '8px' }}
+            required
+            value={props.city}
+          />
+          <input
+            placeholder='State'
+            name='state'
+            className='half-input'
+            required
+            value={props.state}
+          />
+        </div>
+        <input
+          placeholder='Zipcode'
+          name='zipcode'
+          required
+          value={props.zipcode}
+        />
+        <span className='space-top-24'></span>
+        <label>Other</label>
+        <textarea placeholder='Notes' name='notes' value={props.notes} />
+        <input type='submit' className='submit-btn' value='Pay Now' />
+      </form>
+    </div>
   );
 };
