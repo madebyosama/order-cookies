@@ -7,13 +7,22 @@ export default function Header() {
         <div>
           <ul className='header-l-menu'>
             <li className='header-item-list'>
-              <a href='' className='header-item'>
+              <a
+                href='https://madebyosama.com/gou-oui/'
+                className='header-item'
+              >
                 Home
               </a>
-              <a href='' className='header-item'>
+              <a
+                href='https://madebyosama.com/gou-oui/about/'
+                className='header-item'
+              >
                 About
               </a>
-              <a href='' className='header-item'>
+              <a
+                href='https://madebyosama.com/gou-oui/faqs/'
+                className='header-item'
+              >
                 Faqs
               </a>
             </li>
@@ -30,13 +39,22 @@ export default function Header() {
         <div>
           <ul className='header-r-menu'>
             <li className='header-item-list'>
-              <a href='' className='header-item'>
+              <a
+                href='https://gou-oui-cookies.vercel.app/'
+                className='header-item'
+              >
                 Cookies
               </a>
-              <a href='' className='header-item'>
+              <a
+                href='https://madebyosama.com/gou-oui/contact/'
+                className='header-item'
+              >
                 Contact
               </a>
-              <a href='' className='header-item'>
+              <a
+                href='https://gou-oui-cookies.vercel.app/'
+                className='header-item'
+              >
                 Order
               </a>
             </li>
