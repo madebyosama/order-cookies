@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Checkout from './Checkout';
+import CheckoutPage from './CheckoutPage';
 import ThankYou from './ThankYou';
 
 export default function Home() {
@@ -49,7 +49,7 @@ export default function Home() {
 
   if (checkoutReady) {
     return (
-      <Checkout
+      <CheckoutPage
         cookies={selectedCookies}
         onUpdateCheckoutReady={() => {
           setCheckoutReady(false);

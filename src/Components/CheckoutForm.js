@@ -151,6 +151,12 @@ export const CheckoutForm = (props) => {
           required
           value={props.zipcode}
         />
+        <input name='cookie1' value={props.cookies[0].title + ' x ' + 1} />
+        <input name='cookie2' value={props.cookies[1].title + ' x ' + 1} />
+        <input name='cookie3' value={props.cookies[2].title + ' x ' + 1} />
+        <input name='cookie4' value={props.cookies[3].title + ' x ' + 1} />
+        <input name='cookie5' value={props.cookies[4].title + ' x ' + 1} />
+        <input name='cookie6' value={props.cookies[5].title + ' x ' + 1} />
         <span className='space-top-24'></span>
         <label>Other</label>
         <textarea placeholder='Notes' name='notes' value={props.notes} />

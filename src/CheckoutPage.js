@@ -8,7 +8,7 @@ const PUBLIC_KEY =
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
-export default function Checkout(props) {
+export default function CheckoutPage(props) {
   const { cookies } = props;
   const [cartCookies, setCartCookies] = useState([]);
 
@@ -80,6 +80,7 @@ export default function Checkout(props) {
                   state={state}
                   zipcode={zipcode}
                   note={notes}
+                  cookies={cookies}
                 />
               </Elements>
             </div>
