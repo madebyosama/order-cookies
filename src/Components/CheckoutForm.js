@@ -10,7 +10,7 @@ export const CheckoutForm = (props) => {
   const form = useRef();
 
   const elements = useElements();
-  const [buttonTitle, setButtonTitle] = useState('Place Order');
+  const [buttonTitle, setButtonTitle] = useState('Pay Now');
   const [buttonClass, setButtonClass] = useState('submit-btn');
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -67,7 +67,7 @@ export const CheckoutForm = (props) => {
       try {
         const { id } = paymentMethod;
         const response = await axios.post(
-          'https://order-cookies-server.vercel.app/stripe/charge',
+          'https://gou-oui-server.madebyosama.com/stripe/charge',
           {
             amount: 3500,
             id: id,
@@ -82,12 +82,12 @@ export const CheckoutForm = (props) => {
         }
       } catch (error) {
         console.log('CheckoutForm.js 28 | ', error);
-        setButtonTitle('Place Order');
+        setButtonTitle('Pay Now');
         setButtonClass('submit-btn');
       }
     } else {
       console.log(error.message);
-      setButtonTitle('Place Order');
+      setButtonTitle('Pay Now');
       setButtonClass('submit-btn');
     }
   };
@@ -95,8 +95,9 @@ export const CheckoutForm = (props) => {
   return (
     <div>
       <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
+        <input placeholder='Name on Card' name='card-name' />
         <CardElement />
-        {buttonTitle === 'Place Order' ? (
+        {buttonTitle === 'Pay Now' ? (
           <button className={buttonClass}>{buttonTitle}</button>
         ) : (
           <p className='disable-btn'>Proccessing...</p>
@@ -110,7 +111,7 @@ export const CheckoutForm = (props) => {
           e.preventDefault();
         }}
       >
-        <label>General Information</label>
+        <label>Billing Information</label>
         <input placeholder='Name' name='name' required value={props.name} />
         <input placeholder='Email' name='email' required value={props.email} />
         <input placeholder='Phone' name='phone' required value={props.phone} />

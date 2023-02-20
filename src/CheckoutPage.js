@@ -177,7 +177,7 @@ export default function CheckoutPage(props) {
                   }}
                 />
                 <span className='space-top-24'></span>
-                <label>Other</label>
+                <label>Order Notes</label>
                 <textarea
                   placeholder='Notes'
                   value={notes}
