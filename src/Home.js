@@ -15,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     async function fetch() {
       const res = await axios.get(
-        'https://opensheet.elk.sh/1Lfu9QGTj2cZkmfDdZdh9Bwu3i9eoK6odwdvEBSHW8IQ/1'
+        'https://opensheet.elk.sh/1_3Jo6v1EvlNaDMPucxyUY_EKKX8JVzjdO4J1UpmfumE/1'
       );
       setCookies(res.data);
     }
