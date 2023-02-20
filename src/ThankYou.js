@@ -12,10 +12,13 @@ export default function ThankYou() {
           fontWeight: 600,
         }}
       >
-        Your Order has been placed.
+        We've got your order!
       </div>
-      <div style={{ paddingBottom: '24px' }}> We will update you via Email</div>
-      <div> Thank You for Choosing Guo-oui Cookies</div>
+      <div style={{ paddingBottom: '24px' }}>
+        {' '}
+        Please check your email for a confirmation
+      </div>
+      <div> Thank You for Choosing Gou-oui Cookies</div>
       <div className='back'>
         <Link to='/' className='back-btn'>
           Place New Order
