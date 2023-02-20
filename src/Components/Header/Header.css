@@ -1,0 +1,72 @@
+.header {
+  background-color: White;
+  border-bottom: 1px solid #ececec;
+  padding: 8px 0px 12px 0px;
+}
+
+.header-logo {
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header-l-menu {
+  text-align: left;
+}
+
+.header-r-menu {
+  text-align: right;
+}
+
+.header-item-list {
+  display: block;
+}
+
+.header-item {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-right: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .header-content {
+    display: none;
+  }
+  .header-content-mobile {
+    display: flex !important;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+  }
+  .mobile-menu {
+    position: absolute;
+    width: 100%;
+    background-color: #00a7d0;
+    color: white;
+    top: 74px;
+    left: 0;
+    font-family: 'Outfit';
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .mobile-menu-item {
+    padding: 16px 20px;
+  }
+  .mobile-menu-item > a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.header-content-mobile {
+  display: none;
+}
