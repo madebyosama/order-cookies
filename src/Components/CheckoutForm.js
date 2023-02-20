@@ -10,7 +10,7 @@ export const CheckoutForm = (props) => {
   const form = useRef();
 
   const elements = useElements();
-  const [buttonTitle, setButtonTitle] = useState('Pay Now');
+  const [buttonTitle, setButtonTitle] = useState('Place Order');
   const [buttonClass, setButtonClass] = useState('submit-btn');
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -82,12 +82,12 @@ export const CheckoutForm = (props) => {
         }
       } catch (error) {
         console.log('CheckoutForm.js 28 | ', error);
-        setButtonTitle('Pay Now');
+        setButtonTitle('Place Order');
         setButtonClass('submit-btn');
       }
     } else {
       console.log(error.message);
-      setButtonTitle('Pay Now');
+      setButtonTitle('Place Order');
       setButtonClass('submit-btn');
     }
   };
@@ -97,7 +97,7 @@ export const CheckoutForm = (props) => {
       <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
         <input placeholder='Name on Card' name='card-name' />
         <CardElement />
-        {buttonTitle === 'Pay Now' ? (
+        {buttonTitle === 'Place Order' ? (
           <button className={buttonClass}>{buttonTitle}</button>
         ) : (
           <p className='disable-btn'>Proccessing...</p>
@@ -161,7 +161,7 @@ export const CheckoutForm = (props) => {
         <span className='space-top-24'></span>
         <label>Other</label>
         <textarea placeholder='Notes' name='notes' value={props.notes} />
-        <input type='submit' className='submit-btn' value='Pay Now' />
+        <input type='submit' className='submit-btn' value='Place Order' />
       </form>
     </div>
   );
