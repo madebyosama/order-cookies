@@ -99,7 +99,7 @@ export default function CheckoutPage(props) {
                   e.preventDefault();
                 }}
               >
-                <label>General Information</label>
+                <label>Billing Information</label>
                 <input
                   placeholder='Name'
                   value={name}
