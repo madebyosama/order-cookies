@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
@@ -12,9 +12,23 @@ export const CheckoutForm = (props) => {
   const elements = useElements();
   const [buttonTitle, setButtonTitle] = useState('Place Order');
   const [buttonClass, setButtonClass] = useState('submit-btn');
-
+  const [coupons, setCoupons] = useState([]);
+  const [amount, setAmount] = useState(35);
+  const [discount, setDiscount] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState();
+
+  useEffect(() => {
+    async function fetch() {
+      const res = await axios.get(
+        'https://opensheet.elk.sh/1kbyVs2VCWV1-fwhCWDXdDrv0EMKA1l6PHmahjU5463c/1'
+      );
+      setCoupons(res.data);
+      console.log(res.data);
+    }
+
+    fetch();
+  }, []);
 
   const sendEmail = () => {
     setButtonTitle('Successful');
@@ -69,7 +83,7 @@ export const CheckoutForm = (props) => {
         const response = await axios.post(
           'https://gou-oui-server.madebyosama.com/stripe/charge',
           {
-            amount: 3500,
+            amount: `${discount ? discount : amount}00`,
             id: id,
           }
         );
@@ -91,12 +105,41 @@ export const CheckoutForm = (props) => {
       setButtonClass('submit-btn');
     }
   };
+  function validateCoupon(e) {
+    const coupon = coupons.find((obj) => obj.Code === e.target.value);
+    if (coupon) {
+      setDiscount(Math.ceil((Number(coupon.Discount) * amount) / 100));
+    } else {
+      setDiscount(false);
+    }
+  }
 
   return (
     <div>
       <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
+        <label>
+          Payment -&nbsp;&nbsp;
+          {discount ? (
+            <span>
+              <span className='discount-rate'>${amount}</span>
+              <span className='rate'>&nbsp;&nbsp;&nbsp;${discount}</span>
+            </span>
+          ) : (
+            <span className='rate'>${amount}</span>
+          )}
+        </label>
+        <br /> <br />
         <input placeholder='Name on Card' name='card-name' />
         <CardElement />
+        <br />
+        <label>Have a Coupon?</label>
+        <br />
+        <br />
+        <input
+          placeholder='Enter Code'
+          name='coupon'
+          onChange={(e) => validateCoupon(e)}
+        />
         {buttonTitle === 'Place Order' ? (
           <button className={buttonClass}>{buttonTitle}</button>
         ) : (

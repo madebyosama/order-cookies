@@ -453,3 +453,12 @@ h3 {
 .back {
   margin-top: 64px;
 }
+
+.rate {
+  color: green;
+}
+
+.discount-rate {
+  color: red;
+  text-decoration: line-through;
+}

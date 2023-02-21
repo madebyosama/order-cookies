@@ -67,7 +67,7 @@ export default function CheckoutPage(props) {
               </button>
               <br />
               <br />
-              <label>Payment</label>
+
               <div className='space-top-24'></div>
               <Elements stripe={stripeTestPromise}>
                 <CheckoutForm
