@@ -18,13 +18,25 @@ export default function Footer() {
           <div className='footer-content-column-one-row-two'>
             <div className='footer-content-title'>FIND US ON</div>
             <div className='footer-content-social'>
-              <a href='#' target='_blank' className='footer-social-image-one'>
+              <a
+                href='https://www.instagram.com/gou_oui/'
+                target='_blank'
+                className='footer-social-image-one'
+              >
                 <img src='https://res.cloudinary.com/dvwpbbisf/image/upload/v1675169147/instagram_cdprrk.svg' />
               </a>
-              <a href='#' target='_blank' className='footer-social-image-two'>
+              <a
+                href='https://www.tiktok.com/@gou_ouicookies'
+                target='_blank'
+                className='footer-social-image-two'
+              >
                 <img src='https://res.cloudinary.com/dvwpbbisf/image/upload/v1675169148/tiktok_hugxl0.svg' />
               </a>
-              <a href='#' target='_blank' className='footer-social-image-three'>
+              <a
+                href='https://www.facebook.com/gououicookies/'
+                target='_blank'
+                className='footer-social-image-three'
+              >
                 <img src='https://res.cloudinary.com/dvwpbbisf/image/upload/v1675169148/facebook_d8ccfd.svg' />
               </a>
             </div>
@@ -34,26 +46,28 @@ export default function Footer() {
           <div className='footer-content-title'>SITEMAP</div>
           <div className='footer-content-links'>
             <div className='footer-content-link'>
-              <a href='#'>FAQs</a>
+              <a href='https://gou-oui.com/faqs/'>FAQs</a>
             </div>
             <div className='footer-content-link'>
-              <a href='#'>Cookies</a>
+              <a href='https://gou-oui-cookies.vercel.app/'>Cookies</a>
             </div>
             <div className='footer-content-link'>
-              <a href='#'>About us</a>
+              <a href='https://gou-oui.com/about/'>About us</a>
             </div>
             <div className='footer-content-link'>
-              <a href='#'>Contact us</a>
+              <a href='https://gou-oui.com/contact/'>Contact us</a>
             </div>
           </div>
           <div className='footer-content-column-two-row-two'>
             <div className='footer-content-title'>OTHER LINKS</div>
             <div className='footer-content-links'>
               <div className='footer-content-link'>
-                <a href='#'>Privacy Policy</a>
+                <a href='https://gou-oui.com/privacy-policy'>Privacy Policy</a>
               </div>
               <div className='footer-content-link'>
-                <a href='#'>Terms & Conditions</a>
+                <a href='https://gou-oui.com/terms-and-conditions'>
+                  Terms & Conditions
+                </a>
               </div>
             </div>
           </div>
