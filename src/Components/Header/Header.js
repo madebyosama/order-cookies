@@ -9,26 +9,20 @@ export default function Header() {
         <div>
           <ul className='header-l-menu'>
             <li className='header-item-list'>
-              <a href='https://https://gou-oui.com/' className='header-item'>
+              <a href='https://gou-oui.com/' className='header-item'>
                 Home
               </a>
-              <a
-                href='https://https://gou-oui.com/about/'
-                className='header-item'
-              >
+              <a href='https://gou-oui.com/about/' className='header-item'>
                 About
               </a>
-              <a
-                href='https://https://gou-oui.com/faqs/'
-                className='header-item'
-              >
+              <a href='https://gou-oui.com/faqs/' className='header-item'>
                 Faqs
               </a>
             </li>
           </ul>
         </div>
         <div className='header-logo'>
-          <a href=''>
+          <a href='https://gou-oui.com/'>
             <img
               src='https://res.cloudinary.com/dvwpbbisf/image/upload/v1674544366/jyl8lm0psjwd5gplxuce.png'
               width='200px'
@@ -44,10 +38,7 @@ export default function Header() {
               >
                 Cookies
               </a>
-              <a
-                href='https://https://gou-oui.com/contact/'
-                className='header-item'
-              >
+              <a href='https://gou-oui.com/contact/' className='header-item'>
                 Contact
               </a>
               <a
@@ -116,16 +107,14 @@ export default function Header() {
             <div className='mobile-menu'>
               <div
                 className='mobile-menu-item'
-                onClick={() =>
-                  window.open('https://https://gou-oui.com/', '_self')
-                }
+                onClick={() => window.open('https://gou-oui.com/', '_self')}
               >
                 <a>Home</a>
               </div>
               <div
                 className='mobile-menu-item'
                 onClick={() =>
-                  window.open('https://https://gou-oui.com/about/', '_self')
+                  window.open('https://gou-oui.com/about/', '_self')
                 }
               >
                 <a>About</a>
@@ -133,7 +122,7 @@ export default function Header() {
               <div
                 className='mobile-menu-item'
                 onClick={() =>
-                  window.open('https://https://gou-oui.com/faqs/', '_self')
+                  window.open('https://gou-oui.com/faqs/', '_self')
                 }
               >
                 <a>Cookies</a>
@@ -149,7 +138,7 @@ export default function Header() {
               <div
                 className='mobile-menu-item'
                 onClick={() =>
-                  window.open('https://https://gou-oui.com/contact/', '_self')
+                  window.open('https://gou-oui.com/contact/', '_self')
                 }
               >
                 <a>CONTACT</a>
