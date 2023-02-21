@@ -9,20 +9,17 @@ export default function Header() {
         <div>
           <ul className='header-l-menu'>
             <li className='header-item-list'>
-              <a
-                href='https://madebyosama.com/gou-oui/'
-                className='header-item'
-              >
+              <a href='https://https://gou-oui.com/' className='header-item'>
                 Home
               </a>
               <a
-                href='https://madebyosama.com/gou-oui/about/'
+                href='https://https://gou-oui.com/about/'
                 className='header-item'
               >
                 About
               </a>
               <a
-                href='https://madebyosama.com/gou-oui/faqs/'
+                href='https://https://gou-oui.com/faqs/'
                 className='header-item'
               >
                 Faqs
@@ -48,7 +45,7 @@ export default function Header() {
                 Cookies
               </a>
               <a
-                href='https://madebyosama.com/gou-oui/contact/'
+                href='https://https://gou-oui.com/contact/'
                 className='header-item'
               >
                 Contact
@@ -120,7 +117,7 @@ export default function Header() {
               <div
                 className='mobile-menu-item'
                 onClick={() =>
-                  window.open('https://buildbyosama.com/gou-oui/', '_self')
+                  window.open('https://https://gou-oui.com/', '_self')
                 }
               >
                 <a>Home</a>
@@ -128,10 +125,7 @@ export default function Header() {
               <div
                 className='mobile-menu-item'
                 onClick={() =>
-                  window.open(
-                    'https://buildbyosama.com/gou-oui/about/',
-                    '_self'
-                  )
+                  window.open('https://https://gou-oui.com/about/', '_self')
                 }
               >
                 <a>About</a>
@@ -139,7 +133,7 @@ export default function Header() {
               <div
                 className='mobile-menu-item'
                 onClick={() =>
-                  window.open('https://buildbyosama.com/gou-oui/faqs/', '_self')
+                  window.open('https://https://gou-oui.com/faqs/', '_self')
                 }
               >
                 <a>Cookies</a>
@@ -155,10 +149,7 @@ export default function Header() {
               <div
                 className='mobile-menu-item'
                 onClick={() =>
-                  window.open(
-                    'https://buildbyosama.com/gou-oui/contact/',
-                    '_self'
-                  )
+                  window.open('https://https://gou-oui.com/contact/', '_self')
                 }
               >
                 <a>CONTACT</a>
