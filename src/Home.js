@@ -63,7 +63,7 @@ export default function Home() {
       <div className='grow-2 cookies-column'>
         <div className='cookies-header'>
           <p className='light-font'>Select 6 Cookies of your Choice</p>
-          <h3 className='text-center title'>Build your own box</h3>
+          <h3 className='text-center title'>Build your own box - 35$</h3>
           {/* <select className='select-cookies'>
             <option>4 Pack</option>
           </select> */}
@@ -100,7 +100,7 @@ export default function Home() {
 cookie-gathering-column'
       >
         <div className='cookies-header'>
-          <h3 className='text-center title box-title'>Your Box</h3>
+          <h3 className='text-center title box-title'>Your Box - 35$</h3>
           <p className=''>{selectedNumber + '/' + numberOfCookies}</p>
           {selectedNumber === 6 ? (
             <p className='light-font'>You can checkout now</p>

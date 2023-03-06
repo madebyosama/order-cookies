@@ -4,7 +4,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { CheckoutForm } from './Components/CheckoutForm';
 
 const PUBLIC_KEY =
-  'pk_test_51JYW5fAUJtCKmWZEr8em2ohJlgByEVLBApJyH9oGzQzNFCnLbQUOfiyJ6dmzzfhawb35GA9oJpTWxpqcwfoT2jb900WiNeFrEL';
+  'pk_live_51JYW5fAUJtCKmWZEqKWYCv557Cb3d7DjcTBaQ67g6unyTAAVjxYhCnvl7db7coFIr3ytE8xVoY1eOks6qv6x6bVh00gJNs1yoB';
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
@@ -208,7 +208,7 @@ export default function CheckoutPage(props) {
           )}
         </div>
         <div className='detail-section'>
-          <h3 className='text-center title detail-title '>Your Box</h3>
+          <h3 className='text-center title detail-title '>Your Box - 35$</h3>
           <div className='cookies details-cookies'>
             {cartCookies.map((c) => {
               return (
