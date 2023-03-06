@@ -100,7 +100,7 @@ export const CheckoutForm = (props) => {
         setButtonClass('submit-btn');
       }
     } else {
-      console.log(error.message);
+      alert(error.message);
       setButtonTitle('Place Order');
       setButtonClass('submit-btn');
     }
