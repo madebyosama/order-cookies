@@ -22,24 +22,24 @@ export const CheckoutForm = (props) => {
     'Georgia',
     'Illinois',
     'Indiana',
-    'Kansas ',
+    'Kansas',
     'Kentucky',
-    'Louisiana ',
+    'Louisiana',
     'Maryland',
     'Michigan',
-    'Mississippi ',
-    'Missouri ',
+    'Mississippi',
+    'Missouri',
     'New Jersey',
     'New York',
-    'North  Carolina ',
+    'North  Carolina',
     'Ohio',
-    'Oklahoma ',
-    'Pennsylvania ',
-    'South Carolina ',
-    'Tennessee ',
+    'Oklahoma',
+    'Pennsylvania',
+    'South Carolina',
+    'Tennessee',
     'Texas',
     'Virginia',
-    'Washington ',
+    'Washington',
     'Wisconsin',
   ];
   const state8 = [
@@ -73,6 +73,7 @@ export const CheckoutForm = (props) => {
   const [isSubmitted, setIsSubmitted] = useState();
 
   useEffect(() => {
+    console.log(shipping3);
     async function fetch() {
       const res = await axios.get(
         'https://opensheet.elk.sh/1kbyVs2VCWV1-fwhCWDXdDrv0EMKA1l6PHmahjU5463c/1'
