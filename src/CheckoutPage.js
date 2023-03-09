@@ -21,7 +21,7 @@ export default function CheckoutPage(props) {
   const [addressLineOne, setAddressLineOne] = useState();
   const [addressLineTwo, setAddressLineTwo] = useState('');
   const [city, setCity] = useState();
-  const [state, setState] = useState();
+  const [state, setState] = useState('Alabama');
   const [zipcode, setZipcode] = useState();
   const [notes, setNotes] = useState('');
   const [shipping, setShipping] = useState();
