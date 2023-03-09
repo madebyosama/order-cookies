@@ -14,6 +14,60 @@ export const CheckoutForm = (props) => {
   const [buttonClass, setButtonClass] = useState('submit-btn');
   const [coupons, setCoupons] = useState([]);
   const [amount, setAmount] = useState(35);
+  const states3 = [
+    'Alabama',
+    'Arkansas',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Illinois',
+    'Indiana',
+    'Kansas ',
+    'Kentucky',
+    'Louisiana ',
+    'Maryland',
+    'Michigan',
+    'Mississippi ',
+    'Missouri ',
+    'New Jersey',
+    'New York',
+    'North  Carolina ',
+    'Ohio',
+    'Oklahoma ',
+    'Pennsylvania ',
+    'South Carolina ',
+    'Tennessee ',
+    'Texas',
+    'Virginia',
+    'Washington ',
+    'Wisconsin',
+  ];
+  const state8 = [
+    'Wyoming',
+    'West Virginia',
+    'Vermont',
+    'Utah',
+    'South Dakota',
+    'Rhode Island',
+    'Oregon',
+    'North Dakota',
+    'New Mexico',
+    'New Hampshire',
+    'Nevada',
+    'Nebraska',
+    'Montana',
+    'Minnesota ',
+    'Massachusetts ',
+    'Maine',
+    'Iowa',
+    'Idaho',
+    'Connecticut ',
+    'Colorado',
+    'California',
+    'Arizona',
+  ];
+  const shipping3 = states3.includes(props.state);
+  const shipping = shipping3 ? 3 : 8;
   const [discount, setDiscount] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState();
@@ -83,7 +137,9 @@ export const CheckoutForm = (props) => {
         const response = await axios.post(
           'https://gou-oui-server.madebyosama.com/stripe/charge',
           {
-            amount: `${discount ? discount : amount}00`,
+            amount: `${
+              discount ? discount + shipping + 2 : amount + shipping + 2
+            }00`,
             id: id,
           }
         );
@@ -116,18 +172,36 @@ export const CheckoutForm = (props) => {
 
   return (
     <div>
+      <div class='invoice-details'>
+        <div className='invoice-detail'>
+          <div>Cookie Box</div>
+          <div>
+            {discount ? (
+              <span>
+                <div className='discount-rate'>${amount}</div>
+                <div className='rate'>&nbsp;&nbsp;&nbsp;${discount}</div>
+              </span>
+            ) : (
+              <span className='rate'>${amount}</span>
+            )}
+          </div>
+        </div>
+        <div className='invoice-detail'>
+          <div>Tax (6.5%)</div>
+          <div>$2</div>
+        </div>
+        <div className='invoice-detail'>
+          <div>Shipping</div>
+          <div>${shipping}</div>
+        </div>
+        <div className='invoice-detail total'>
+          <div>Total</div>
+          <div>
+            ${discount ? discount + shipping + 2 : amount + shipping + 2}
+          </div>
+        </div>
+      </div>
       <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-        <label>
-          Payment -&nbsp;&nbsp;
-          {discount ? (
-            <span>
-              <span className='discount-rate'>${amount}</span>
-              <span className='rate'>&nbsp;&nbsp;&nbsp;${discount}</span>
-            </span>
-          ) : (
-            <span className='rate'>${amount}</span>
-          )}
-        </label>
         <br /> <br />
         <input placeholder='Name on Card' name='card-name' />
         <CardElement />

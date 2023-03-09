@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { CheckoutForm } from './Components/CheckoutForm';
+import { states } from './data/states';
 
 const PUBLIC_KEY =
   'pk_live_51JYW5fAUJtCKmWZEqKWYCv557Cb3d7DjcTBaQ67g6unyTAAVjxYhCnvl7db7coFIr3ytE8xVoY1eOks6qv6x6bVh00gJNs1yoB';
@@ -23,6 +24,7 @@ export default function CheckoutPage(props) {
   const [state, setState] = useState();
   const [zipcode, setZipcode] = useState();
   const [notes, setNotes] = useState('');
+  const [shipping, setShipping] = useState();
   const [validEmail, setValidEmail] = useState('Not Entered');
 
   const updateCheckoutReady = () => {
@@ -157,15 +159,25 @@ export default function CheckoutPage(props) {
                       setCity(e.target.value);
                     }}
                   />
-                  <input
-                    placeholder='State'
+                  <select
+                    className='half-input select'
                     value={state}
-                    className='half-input'
-                    required
                     onChange={(e) => {
                       setState(e.target.value);
                     }}
-                  />
+                  >
+                    {states.map((s) => {
+                      return (
+                        <option
+                          value={s.state}
+                          shipping={s.shipping}
+                          key={s.state}
+                        >
+                          {s.state} - ${s.shipping}
+                        </option>
+                      );
+                    })}
+                  </select>
                 </div>
                 <input
                   placeholder='Zipcode'

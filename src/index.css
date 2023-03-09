@@ -462,3 +462,51 @@ h3 {
   color: red;
   text-decoration: line-through;
 }
+
+.tax {
+  color: #00a7d0;
+}
+
+.select {
+  font-family: 'Outfit';
+  font-size: 16px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 12px;
+  border: 2px solid black;
+  min-width: 189px !important;
+}
+
+select {
+  background-image: url('./assets/chev-down.svg');
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 8px) center;
+  height: 45px;
+}
+
+/* Removing the default arrow */
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.invoice-details {
+  display: flex;
+  flex-direction: column;
+  padding-left: 14px;
+}
+
+.invoice-detail {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 350px;
+}
+
+.total {
+  padding-top: 10px;
+  border-top: 1px solid #ececec;
+  font-size: 20px;
+  font-weight: bold;
+}
