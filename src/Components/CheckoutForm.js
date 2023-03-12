@@ -110,27 +110,32 @@ export const CheckoutForm = (props) => {
         cookie6: props.cookies[5].title,
       }
     );
-    console.log(res);
-    // emailjs
-    //   .sendForm('checkout', 'checkout', form.current, 'oODAFM08o-ckYKNX_')
-    //   .then(
-    //     (result) => {
-    //       if (result.text === 'OK') {
-    //         setIsSubmitted('yes');
-    //         setIsSubmitting(false);
-    //         navigate('/thankyou');
-    //       } else {
-    //         alert(
-    //           'Payment Send but Details not sent. Please contact us for more information.'
-    //         );
-    //         setIsSubmitted('no');
-    //         setIsSubmitting(false);
-    //       }
-    //     },
-    //     (error) => {
-    //       console.log(error.text);
-    //     }
-    //   );
+    if (res.data.status === 'ok') {
+      emailjs
+        .sendForm('checkout', 'checkout', form.current, 'oODAFM08o-ckYKNX_')
+        .then(
+          (result) => {
+            if (result.text === 'OK') {
+              setIsSubmitted('yes');
+              setIsSubmitting(false);
+              navigate('/thankyou');
+            } else {
+              alert(
+                'Payment Send but Details not sent. Please contact us for more information.'
+              );
+              setIsSubmitted('no');
+              setIsSubmitting(false);
+            }
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    } else {
+      alert(
+        'Payment Send but Details not sent. Please contact us for more information.'
+      );
+    }
   };
 
   const handleSubmit = async (event) => {
