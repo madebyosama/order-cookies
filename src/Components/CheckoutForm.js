@@ -89,8 +89,8 @@ export const CheckoutForm = (props) => {
     setButtonTitle('Successful');
     setIsSubmitting(true);
     const res = await axios.post(
-      'https://gou-oui-server.madebyosama.com/orders',
-      // 'http://localhost:1337/orders',
+      // 'https://gou-oui-server.madebyosama.com/orders',
+      'http://localhost:1337/orders',
       {
         name: props.name,
         email: props.email,
@@ -159,8 +159,8 @@ export const CheckoutForm = (props) => {
       try {
         const { id } = paymentMethod;
         const response = await axios.post(
-          'https://gou-oui-server.madebyosama.com/stripe/charge',
-          // 'http://localhost:1337/stripe/charge',
+          // 'https://gou-oui-server.madebyosama.com/stripe/charge',
+          'http://localhost:1337/stripe/charge',
           {
             amount: `${
               discount ? discount + shipping + 2 : amount + shipping + 2
