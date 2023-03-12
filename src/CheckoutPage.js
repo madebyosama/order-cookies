@@ -5,7 +5,8 @@ import { CheckoutForm } from './Components/CheckoutForm';
 import { states } from './data/states';
 
 const PUBLIC_KEY =
-  'pk_live_51JYW5fAUJtCKmWZEqKWYCv557Cb3d7DjcTBaQ67g6unyTAAVjxYhCnvl7db7coFIr3ytE8xVoY1eOks6qv6x6bVh00gJNs1yoB';
+  // 'pk_live_51JYW5fAUJtCKmWZEqKWYCv557Cb3d7DjcTBaQ67g6unyTAAVjxYhCnvl7db7coFIr3ytE8xVoY1eOks6qv6x6bVh00gJNs1yoB';
+  'pk_test_51JYW5fAUJtCKmWZEr8em2ohJlgByEVLBApJyH9oGzQzNFCnLbQUOfiyJ6dmzzfhawb35GA9oJpTWxpqcwfoT2jb900WiNeFrEL';
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 

@@ -85,29 +85,51 @@ export const CheckoutForm = (props) => {
     fetch();
   }, []);
 
-  const sendEmail = () => {
+  const sendEmail = async () => {
     setButtonTitle('Successful');
     setIsSubmitting(true);
-    emailjs
-      .sendForm('checkout', 'checkout', form.current, 'oODAFM08o-ckYKNX_')
-      .then(
-        (result) => {
-          if (result.text === 'OK') {
-            setIsSubmitted('yes');
-            setIsSubmitting(false);
-            navigate('/thankyou');
-          } else {
-            alert(
-              'Payment Send but Details not sent. Please contact us for more information.'
-            );
-            setIsSubmitted('no');
-            setIsSubmitting(false);
-          }
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    const res = await axios.post(
+      'https://gou-oui-server.madebyosama.com/orders',
+      {
+        name: props.name,
+        email: props.email,
+        phone: props.phone,
+        addressLineOne: props.addressLineOne,
+        addressLineTwo: props.addressLineTwo ? props.addressLineTwo : '',
+        city: props.city,
+        state: props.state,
+        zipcode: props.zipcode,
+        notes: props.notes,
+        amount: props.amount,
+        cookie1: props.cookie1,
+        cookie2: props.cookie2,
+        cookie3: props.cookie3,
+        cookie4: props.cookie4,
+        cookie5: props.cookie5,
+        cookie6: props.cookie6,
+      }
+    );
+    console.log(res);
+    // emailjs
+    //   .sendForm('checkout', 'checkout', form.current, 'oODAFM08o-ckYKNX_')
+    //   .then(
+    //     (result) => {
+    //       if (result.text === 'OK') {
+    //         setIsSubmitted('yes');
+    //         setIsSubmitting(false);
+    //         navigate('/thankyou');
+    //       } else {
+    //         alert(
+    //           'Payment Send but Details not sent. Please contact us for more information.'
+    //         );
+    //         setIsSubmitted('no');
+    //         setIsSubmitting(false);
+    //       }
+    //     },
+    //     (error) => {
+    //       console.log(error.text);
+    //     }
+    //   );
   };
 
   const handleSubmit = async (event) => {
