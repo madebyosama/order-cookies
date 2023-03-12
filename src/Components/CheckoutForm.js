@@ -90,6 +90,7 @@ export const CheckoutForm = (props) => {
     setIsSubmitting(true);
     const res = await axios.post(
       'https://gou-oui-server.madebyosama.com/orders',
+      // 'http://localhost:1337/orders',
       {
         name: props.name,
         email: props.email,
@@ -101,12 +102,12 @@ export const CheckoutForm = (props) => {
         zipcode: props.zipcode,
         notes: props.notes,
         amount: props.amount,
-        cookie1: props.cookie1,
-        cookie2: props.cookie2,
-        cookie3: props.cookie3,
-        cookie4: props.cookie4,
-        cookie5: props.cookie5,
-        cookie6: props.cookie6,
+        cookie1: props.cookies[0].title,
+        cookie2: props.cookies[1].title,
+        cookie3: props.cookies[2].title,
+        cookie4: props.cookies[3].title,
+        cookie5: props.cookies[4].title,
+        cookie6: props.cookies[5].title,
       }
     );
     console.log(res);
@@ -159,6 +160,7 @@ export const CheckoutForm = (props) => {
         const { id } = paymentMethod;
         const response = await axios.post(
           'https://gou-oui-server.madebyosama.com/stripe/charge',
+          // 'http://localhost:1337/stripe/charge',
           {
             amount: `${
               discount ? discount + shipping + 2 : amount + shipping + 2

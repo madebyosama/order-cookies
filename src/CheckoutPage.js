@@ -82,7 +82,7 @@ export default function CheckoutPage(props) {
                   city={city}
                   state={state}
                   zipcode={zipcode}
-                  note={notes}
+                  notes={notes}
                   cookies={cookies}
                 />
               </Elements>
