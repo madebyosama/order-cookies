@@ -89,7 +89,7 @@ export const CheckoutForm = (props) => {
     setButtonTitle('Successful');
     setIsSubmitting(true);
     const res = await axios.post(
-      'https://gou-oui-server.madebyosama.com/orders',
+      'https://order-cookies-server.vercel.app/orders',
       // 'http://localhost:1337/orders',
       {
         name: props.name,
@@ -159,7 +159,7 @@ export const CheckoutForm = (props) => {
       try {
         const { id } = paymentMethod;
         const response = await axios.post(
-          'https://gou-oui-server.madebyosama.com/stripe/charge',
+          'https://order-cookies-server.vercel.app/stripe/charge',
           // 'http://localhost:1337/stripe/charge',
           {
             amount: `${
